@@ -256,9 +256,7 @@ public class DynamicConfigFactory implements Initializable, ConfigurationChangeL
         eventBus.post(ium);
         eventBus.post(nm);
         eventBus.post(whitelist==null? defaultWhitelistingSettings: whitelist);
-        if (cr.isAuditHotReloadingEnabled()) {
-            eventBus.post(audit);
-        }
+        eventBus.post(audit);
 
         initialized.set(true);
         
