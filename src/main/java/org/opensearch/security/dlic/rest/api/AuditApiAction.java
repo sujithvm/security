@@ -172,17 +172,6 @@ public class AuditApiAction extends PatchableResourceApiAction {
     }
 
     @Override
-    protected void handleApiRequest(final RestChannel channel, final RestRequest request, final Client client) throws IOException {
-        // if audit config doc is not available in security index,
-        // disable audit APIs
-        if (!cl.isAuditHotReloadingEnabled()) {
-            notImplemented(channel, request.method());
-            return;
-        }
-        super.handleApiRequest(channel, request, client);
-    }
-
-    @Override
     protected void handlePut(final RestChannel channel, final RestRequest request, final Client client, final JsonNode content) throws IOException {
         if (!RESOURCE_NAME.equals(request.param("name"))) {
             badRequestResponse(channel, "name must be config");

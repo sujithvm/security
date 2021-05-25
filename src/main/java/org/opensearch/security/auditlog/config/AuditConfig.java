@@ -397,13 +397,6 @@ public class AuditConfig {
             ConfigConstants.OPENDISTRO_SECURITY_COMPLIANCE_HISTORY_WRITE_WATCHED_INDICES
     );
 
-    public static Set<String> getDeprecatedKeys(final Settings settings) {
-        return AuditConfig.DEPRECATED_KEYS
-                .stream()
-                .filter(settings::hasValue)
-                .collect(Collectors.toSet());
-    }
-
     public static final Set<String> FIELD_PATHS = Sets.union(
             Utils.generateFieldResourcePaths(AuditConfig.FIELDS, "/"),
             Sets.union(

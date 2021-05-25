@@ -105,9 +105,6 @@ public class PermissionsInfoAction extends BaseRestHandler {
             		Set<String> userRoles = privilegesEvaluator.mapRoles(user, remoteAddress);
             		Boolean hasApiAccess = restApiPrivilegesEvaluator.currentUserHasRestApiAccess(userRoles);
             		Map<Endpoint, List<Method>> disabledEndpoints = restApiPrivilegesEvaluator.getDisabledEndpointsForCurrentUser(user.getName(), userRoles);
-            		if (!configurationRepository.isAuditHotReloadingEnabled()) {
-            		   disabledEndpoints.put(Endpoint.AUDIT, ImmutableList.copyOf(Method.values()));
-            		}
 
                     builder.startObject();
                     builder.field("user", user==null?null:user.toString());
